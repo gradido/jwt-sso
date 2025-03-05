@@ -93,7 +93,12 @@ class JWT extends BaseClient implements StandaloneAuthClient
         $this->autoStoreAuthClient();
 
 
-        return $authAction->authSuccess($this);
+        $defaultRedirect = $authAction->authSuccess(client: $this);
+
+        if (isset($decodedJWT->redirectLink)) {
+            Yii::$app->getResponse()->redirect($decodedJWT->redirectLink);
+        }
+        return $defaultRedirect;
     }
 
     /**
