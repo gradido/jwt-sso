@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2019 HumHub GmbH & Co. KG
@@ -36,7 +37,7 @@ class Module extends \humhub\components\Module
             if (!Yii::$app->request->get('jwt') && $jwtAuth->url) {
                 $event->sender->redirect($jwtAuth->url);
             }
-            
+
             if ($jwtAuth->checkIPAccess()) {
                 if ($jwtAuth->autoLogin && $event->action->id == 'login' && empty(Yii::$app->request->get('noJwt'))) {
                     $event->isValid = false;
