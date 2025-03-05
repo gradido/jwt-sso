@@ -32,7 +32,7 @@ class JWT extends BaseClient implements StandaloneAuthClient
     /**
      * @var array a list of supported jwt verification algorithms Supported algorithms are 'HS256', 'HS384', 'HS512' and 'RS256'
      */
-    public $supportedAlgorithms = array(['HS256']);
+    public $supportedAlgorithms = [['HS256']];
 
     /**
      * @var string attribute to match user tables with (email, username, id, guid)
@@ -109,9 +109,9 @@ class JWT extends BaseClient implements StandaloneAuthClient
         if (!isset($userAttributes['id'])) {
             if ($this->idAttribute == 'email' && isset($userAttributes['email'])) {
                 $userAttributes['id'] = $userAttributes['email'];
-            } else if ($this->idAttribute == 'guid' && isset($userAttributes['guid'])) {
+            } elseif ($this->idAttribute == 'guid' && isset($userAttributes['guid'])) {
                 $userAttributes['id'] = $userAttributes['guid'];
-            } else if ($this->idAttribute == 'username' && isset($userAttributes['username'])) {
+            } elseif ($this->idAttribute == 'username' && isset($userAttributes['username'])) {
                 $userAttributes['id'] = $userAttributes['username'];
             }
         }
@@ -171,11 +171,11 @@ class JWT extends BaseClient implements StandaloneAuthClient
         $attributes = $this->getUserAttributes();
         if (isset($attributes['email'])) {
             return User::findOne(['email' => $attributes['email']]);
-        } else if(isset($attributes['username'])) {
+        } elseif (isset($attributes['username'])) {
             return User::findOne(['username' => $attributes['username']]);
-        } else if(isset($attributes['id'])) {
+        } elseif (isset($attributes['id'])) {
             return User::findOne(['id' => $attributes['id']]);
-        } else if(isset($attributes['guid'])) {
+        } elseif (isset($attributes['guid'])) {
             return User::findByGuid($attributes['guid']);
         }
 
