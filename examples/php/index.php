@@ -12,7 +12,7 @@ $urlRewritingEnabled = false;
 
 // Build token including your user data
 $now = time();
-$token = array(
+$token = [
     'iss' => 'example',
     'jti' => md5($now . rand()),
     'iat' => $now,
@@ -21,7 +21,7 @@ $token = array(
     'firstname' => 'John',
     'lastname' => 'Doe',
     'email' => 'john.doe@example.com',
-);
+];
 
 // Create JWT token
 $jwt = JWT::encode($token, $key);
@@ -35,4 +35,3 @@ if ($urlRewritingEnabled) {
 $location .= "&jwt=" . $jwt;
 
 header("Location: " . $location);
-?>

@@ -10,6 +10,5 @@ return [
     'namespace' => 'humhub\modules\sso\jwt',
     'events' => [
         [AuthController::class, AuthController::EVENT_BEFORE_ACTION, ['humhub\modules\sso\jwt\Module', 'onAuthClientCollectionInit']],
-    ]
+    ],
 ];
-?>

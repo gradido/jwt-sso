@@ -19,7 +19,6 @@ use humhub\modules\user\models\User;
  */
 class JWT extends BaseClient implements StandaloneAuthClient
 {
-
     /**
      * @var string url of the JWT provider
      */
@@ -53,7 +52,7 @@ class JWT extends BaseClient implements StandaloneAuthClient
     public $allowedIPs = [];
 
     /**
-     * @var boolean enable automatic login of 'allowed ips'.
+     * @var bool enable automatic login of 'allowed ips'.
      */
     public $autoLogin = false;
 
@@ -90,6 +89,7 @@ class JWT extends BaseClient implements StandaloneAuthClient
         }
 
         $this->setUserAttributes((array)$decodedJWT);
+        Yii::$app->session->set('loginRememberMe', true);
         $this->autoStoreAuthClient();
 
 
